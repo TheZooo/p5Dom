@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+    <script src="p5/p5.dom.min.js"></script>
+    <script>
+      var capa;
+      var dapa;
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var filt = 0;
+      
+      function keyPressed() {
+        if (keyCode === "38" || keyCode === "87" && filt < 5) {
+          filt++;
+        }
+        if (keyCode === "40" || keyCode === "83" && filt > 0) {
+          filt--;
+        }
+      }
+      
+      function setup() {
+        createCanvas(640,480);
+        capa = createCapture(VIDEO);
+      }
+      
+      function draw() {
+        if (filt === 1) {
+          tint(255,255,255,50);
+        }
+        if (filt === 2) {
+          tint(220,0,0);
+        }
+        image(capa,0,0);
+        if (filt === 3) {
+          filter(INVERT);
+        }
+        if (filt === 4) {
+          filter(POSTERIZE, 3);
+        }
+        if (filt === 5) {
+          filter(BLUR);
+        }
+      }
+      
+      
+      
+    </script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      canvas {
+        position:absolute;
+        top: 0;
+        left:640px;
+      }
+    </style>
+  </head>
+  <body>
+  </body>
+</html>
